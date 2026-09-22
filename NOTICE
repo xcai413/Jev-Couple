@@ -1,8 +1,11 @@
-Jev 聊天助手 (Jev Chat Assistant)
+上游项目：Jev 聊天助手 (Jev Chat Assistant)
 Copyright (c) 2026 Finderchangchang and the jev-chat contributors
-https://github.com/jev-chat/jev-chat-jarvis · https://chatjevs.com
+https://github.com/jev-chat/jev-chat-jarvis
 
-本项目以 MIT 协议开源（见 LICENSE）。
+本项目：Jev Couple（懂你们：关系沟通辅助）
+https://github.com/xcai413/Jev-Couple
+
+本项目以 MIT 协议开源（见 LICENSE）。这是基于上游项目的二次开发版本；本项目与上游作者及原项目没有官方隶属、赞助或背书关系。
 
 - 允许个人和商业使用、修改、再分发、集成到自有产品中，无需付费或事先授权。
 - 分发或商用时，必须保留 LICENSE 与本 NOTICE 文件，并在产品的「关于」页、说明文档或发布页中注明出处。

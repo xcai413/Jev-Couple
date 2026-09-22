@@ -1,19 +1,22 @@
-# Jev 聊天助手 (Jev Chat Assistant)
+# Jev Couple
 
-**装在手机上的「对话副驾」：你在任何聊天 App 里聊天，它在旁边读懂对方、告诉你该怎么回，一键填进输入框，发不发由你。**
+**懂你们：关系沟通辅助。** 在手机聊天 App 中分析情侣对话的可能意图、情绪与沟通需求，给出沟通建议和候选回复；只填入输入框，发不发由你。
 
-已在 **微信、QQ、X（Twitter 私信）** 三个平台真机跑通，飞书采集已接入。一套内核，一个 App 一个几十行的适配器。
+基于上游 [Jev 聊天助手](https://github.com/jev-chat/jev-chat-jarvis) 二次开发，保留其 Android 多平台采集、Jev 判断、知识库和人工回填能力，重点收窄到情侣关系沟通场景。已在 **微信、QQ、X（Twitter 私信）** 三个平台真机跑通，飞书采集已接入。
 
-**联系 / 反馈 / 合作：请公众号私信**（二维码见文末）。 官网：[chatjevs.com](https://chatjevs.com)
+本项目与上游作者及原项目没有官方隶属、赞助或背书关系。
 
 <p align="center">
   <img src="docs/images/overlay.png" width="300" alt="悬浮窗：聊天上方的 Jev 分析面板" />
   &nbsp;&nbsp;&nbsp;
   <img src="docs/images/settings.png" width="300" alt="设置页" />
 </p>
-<p align="center"><sub>左：悬浮窗——危险等级、对方真实意图、Jev 排好序的 3 条候选回复，复制或填入。右：设置页。</sub></p>
+<p align="center"><sub>左：关系沟通分析与候选回复。右：接口和关系设置。</sub></p>
 
 ## 亮点
+
+- **关系沟通优先。** 不把模型判断包装成“读心”；展示多个可能意图、对方可能需要什么、当前沟通风险和建议动作。
+- **关注冲突与修复。** 在通用聊天副驾之上，逐步加入冲突阶段、关系事件、承诺事项和回复风险提示，帮助减少误解，而不是替你给对方下结论。
 
 - **一套内核，多平台。** 微信 8.0.78、QQ 9.3.50、X 12.25 真机验证，读消息 → 判断 → 候选 → 填入整条链全通。新增一个 App 只需实现一个 `ChatAppAdapter`，其余全部复用。
 - **非侵入。** 不 hook、不改包、不走任何 App 的接口或账号、不读数据库，只用系统无障碍服务读「屏幕上正在显示的对话」。微信这种混淆节点的也能读到。
@@ -40,7 +43,7 @@
 
 ## 快速开始
 
-**1. 装包。** 仓库里有签好名的 release 包：[`apk/jev-assistant-v1.3-release.apk`](apk/jev-assistant-v1.3-release.apk)（Android 11+）。更新日志见 [CHANGELOG.md](CHANGELOG.md)，各版本安装包在 [Releases](https://github.com/jev-chat/jev-chat-jarvis/releases)。
+**1. 装包。** 仓库里有签好名的 release 包：[`apk/jev-assistant-v1.3-release.apk`](apk/jev-assistant-v1.3-release.apk)（Android 11+）。更新日志见 [CHANGELOG.md](CHANGELOG.md)，各版本安装包在本仓库的 [Releases](https://github.com/xcai413/Jev-Couple/releases)。
 
 ```bash
 adb install -r apk/jev-assistant-v1.3-release.apk
@@ -116,6 +119,10 @@ JDK 17 + Android SDK（platform 35 / build-tools 35）。
 
 ## 已知限制
 
+- **这不是读心工具。** 意图、情绪和风险均是基于当前上下文的概率判断，不代表对方真实想法；信息不足时应直接沟通确认。
+- **不做心理诊断或出轨结论。** 不根据性别刻板推断，不把模型输出当作关系事实或专业诊断。
+- **不自动发送。** 程序只填入输入框，发送和最终措辞由用户确认。
+
 - **国产 ROM 后台冻结**：小米 / HyperOS 会杀后台进程，前台保活、自启动、省电无限制都配了仍可能被杀，气泡短暂消失，在聊天里再交互一下自愈。
 - **飞书正文靠 OCR**：飞书正文是自绘控件，无障碍树里只有气泡矩形，1.3 起对每个矩形做离线 OCR；我 / 对方按已读状态判断，判反时请用「存为联系人」并在备注里说明，或关掉自动分析改手动。
 - **X 只按中文界面验过**：分隔符 `：`、`上午 / 下午`、`Read` 是中文界面实测；英文界面只做了兜底，未验。
@@ -137,41 +144,22 @@ JDK 17 + Android SDK（platform 35 / build-tools 35）。
 - `docs/` — 设计与验收文档
 - `apk/` — 签好名的 release 包
 
-## 交流群 / 需求收集
+## 反馈与二次开发
 
-**如需联系，请公众号私信。** 合作、反馈、进群失败、二维码过期，都走公众号私信，其它渠道不一定看得到。
+反馈请提交本仓库的 [Issues](https://github.com/xcai413/Jev-Couple/issues) 或 Pull Request。本项目不使用上游公众号、官网或社群作为自己的支持入口。
 
-<p align="center"><img src="docs/images/wechat-mp.png" width="180" alt="公众号二维码" /></p>
+## 上游与相关项目
 
-想听真实需求：你在哪个聊天 App 上最想要这个副驾？希望它判断什么、怎么提示、什么绝对不能碰？扫码进群直接说。**1、2、3、4 群已满，不要再扫；5、6、7 群任选一个，请勿重复加入。**
-
-<table align="center"><tr>
-  <td align="center"><img src="docs/images/wechat-group-5.png" width="160" alt="5 群" /><br/><b>5 群</b></td>
-  <td align="center"><img src="docs/images/wechat-group-6.png" width="160" alt="6 群" /><br/><b>6 群</b></td>
-  <td align="center"><img src="docs/images/wechat-group-7.png" width="160" alt="7 群" /><br/><b>7 群</b></td>
-</tr></table>
-
-<p align="center"><sub>以下四群已满，请勿再扫：</sub></p>
-
-<table align="center"><tr>
-  <td align="center"><img src="docs/images/wechat-group-1.png" width="100" alt="1 群（已满）" /><br/><sub>1 群 · 已满</sub></td>
-  <td align="center"><img src="docs/images/wechat-group-2.png" width="100" alt="2 群（已满）" /><br/><sub>2 群 · 已满</sub></td>
-  <td align="center"><img src="docs/images/wechat-group-3.png" width="100" alt="3 群（已满）" /><br/><sub>3 群 · 已满</sub></td>
-  <td align="center"><img src="docs/images/wechat-group-4.png" width="100" alt="4 群（已满）" /><br/><sub>4 群 · 已满</sub></td>
-</tr></table>
-
-<p align="center"><sub>群二维码 7 天有效（本批到 2026-09-29），过期了公众号私信要新码。</sub></p>
-
-## 姊妹项目
-
-这个项目和几个朋友的 AI 工具放在同一个组织 [jev-chat](https://github.com/jev-chat) 下面：
+本项目基于上游 [jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis) 二次开发。相关项目由上游维护：
 
 - [Jev 聊天助手 macOS 版](https://github.com/jev-chat/jev-chat-mac)：微信消息意图识别悬浮窗，看屏 + 本地小模型判断意图和风险，再按话术生成回复候选，纯只读。
 - [Jev 聊天助手 Windows 版](https://github.com/jev-chat/jev-chat-windows)：微信 Windows 4.x 旁挂的回复辅助，窗口截图 + 本地离线 OCR，3 条候选一键填入，发送永远手动。
 - [微墨 WeChat Ink](https://github.com/Snowwit88/wechat-ink)：微信公众号写作、配图与排版助手，支持资料核验、学术风图文和草稿发布。
-## 版权与许可
+## 版权、上游署名与许可
 
 Copyright © 2026 Finderchangchang 与 jev-chat 贡献者。代码以 [MIT](LICENSE) 协议开源，另见 [NOTICE](NOTICE)。
+
+本项目 `Jev Couple` 是基于上述上游项目的二次开发版本，由本仓库维护者负责本项目的修改与发布。本项目与上游作者及原项目没有官方隶属、赞助或背书关系。
 
 - **可以商用**：个人和公司都可以使用、修改、再分发，或集成进自己的产品，不需要付费或事先授权。
 - **必须注明出处**：分发或商用时保留 LICENSE 与 NOTICE，并在产品「关于」页、说明文档或发布页写明来源。推荐写法：`基于 Jev 聊天助手（https://github.com/jev-chat/jev-chat-jarvis）二次开发`。
